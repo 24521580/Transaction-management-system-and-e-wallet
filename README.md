@@ -77,7 +77,7 @@ npm install
 npm run dev
 ```
 
-## Deploy public bằng Vercel
+## Deploy công khai bằng Vercel
 
 1. Push code của repo này lên GitHub.
 2. Đăng nhập Vercel và chọn **Add New... > Project**.
@@ -89,7 +89,7 @@ npm run dev
 6. Nếu dùng API/backend thật sau này, thêm biến môi trường tại:
    - **Project Settings > Environment Variables**
    - Sau đó redeploy project.
-7. (Tuỳ chọn) gắn domain riêng tại **Project Settings > Domains**.
+7. (Tùy chọn) gắn domain riêng tại **Project Settings > Domains**.
 
 Build production:
 
