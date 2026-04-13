@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #0f172a;
+  background-color: #f2f2f7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.glass-card {
+  @apply rounded-ios border border-white/50 bg-white/70 shadow-ios backdrop-blur-md;
+}
+
+.ios-pill {
+  @apply h-11 rounded-full px-5 text-sm font-semibold transition-all duration-ios;
+}
+
+.page-container {
+  @apply mx-auto w-full max-w-7xl px-4 pb-8 pt-4 md:px-6 lg:px-8;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.65) 25%, rgba(226, 232, 240, 0.95) 50%, rgba(226, 232, 240, 0.65) 75%);
+  background-size: 200% 100%;
+  @apply animate-shimmer rounded-xl;
+}
