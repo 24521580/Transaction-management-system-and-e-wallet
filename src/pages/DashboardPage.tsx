@@ -49,7 +49,7 @@ export function DashboardPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#d1d5db" />
                 <XAxis dataKey="day" />
                 <YAxis />
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
                 <Line type="monotone" dataKey="income" stroke="#34C759" strokeWidth={2} dot={false} />
                 <Line type="monotone" dataKey="expense" stroke="#FF3B30" strokeWidth={2} dot={false} />
               </LineChart>
@@ -66,7 +66,7 @@ export function DashboardPage() {
                     <Cell key={entry.name} fill={chartColors[index % chartColors.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
               </PieChart>
             </ResponsiveContainer>
           </div>

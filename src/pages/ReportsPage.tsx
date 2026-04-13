@@ -39,7 +39,7 @@ export function ReportsPage() {
                     <Cell key={entry.name} fill={colors[index % colors.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -52,7 +52,7 @@ export function ReportsPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#d1d5db" />
                 <XAxis dataKey="month" />
                 <YAxis />
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
                 <Bar dataKey="total" fill="#007AFF" radius={[10, 10, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

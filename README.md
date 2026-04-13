@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# Transaction Management System and E-Wallet
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website quản lý giao dịch + ví điện tử (React + Vite + TypeScript) theo phong cách UI iOS 26.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React + Vite + TypeScript
+- TailwindCSS
+- Framer Motion
+- React Router
+- Recharts
+- Zustand
+- Axios
+- React Hook Form + Zod
 
-## React Compiler
+## Tính năng chính
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Landing page + CTA đăng nhập/đăng ký
+- Auth: Đăng nhập / Đăng ký / Quên mật khẩu
+- Dashboard: số dư ví, tổng thu/chi tháng, biểu đồ, giao dịch gần đây
+- Transactions: lọc theo ngày/loại/danh mục/số tiền, tìm kiếm, phân trang, thêm/sửa/xóa
+- Wallet: nạp/rút/chuyển tiền, lịch sử biến động số dư
+- Categories/Budgets: quản lý danh mục thu/chi, ngân sách tháng, cảnh báo >80% và >100%
+- Reports: biểu đồ tròn theo danh mục, biểu đồ cột theo tháng, export CSV
+- Profile/Settings: thông tin cá nhân, đổi mật khẩu, bật/tắt dark mode
+- Route guards cho khu vực yêu cầu đăng nhập
 
-## Expanding the ESLint configuration
+## Theme iOS 26
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Design token chính được cấu hình trong `tailwind.config.ts`:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Primary: `#007AFF`
+- Success: `#34C759`
+- Warning: `#FF9F0A`
+- Danger: `#FF3B30`
+- Background: `#F2F2F7`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Ngoài ra có glassmorphism, bo góc lớn, shadow mềm, button pill 44px, transition 250ms, focus ring rõ ràng.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Cấu trúc thư mục
+
+```text
+src/
+  pages/
+  components/
+    ui/
+    common/
+  features/
+    auth/
+    transactions/
+    settings/
+  services/
+    api/
+  store/
+  types/
+  utils/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Mock data và nghiệp vụ
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Dữ liệu demo nằm trong Zustand store (`src/store/useAppStore.ts`)
+- Transaction model:
+  - `id, title, amount, type(income|expense|transfer), category, date, note, walletId`
+- Dashboard tính:
+  - tổng thu, tổng chi, chênh lệch
+  - top 5 danh mục chi tiêu
+- Budget usage:
+  - `% đã dùng = totalExpenseByCategory / budgetLimit * 100`
+  - Cảnh báo vàng khi > 80%
+  - Cảnh báo đỏ khi > 100%
+- Service layer Axios dùng mock adapter (`src/services/api/mockAdapter.ts`) để mô phỏng API call khi chưa có backend thật.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Cài đặt và chạy local
+
+```bash
+npm install
+npm run dev
 ```
+
+Build production:
+
+```bash
+npm run build
+```
+
+Lint:
+
+```bash
+npm run lint
+```
+
+## Accessibility và responsive
+
+- Có `aria-label` cho các action quan trọng
+- Điều hướng bằng bàn phím trên form controls/buttons
+- Responsive cho desktop/tablet/mobile (header + bottom nav)
+
+## Hướng mở rộng tích hợp backend thật
+
+1. Thay `mockAdapter` bằng API thật qua `apiClient` (baseURL từ `.env`).
+2. Chuẩn hóa auth với JWT + refresh token.
+3. Đồng bộ model giữa frontend/backend bằng OpenAPI hoặc schema shared.
+4. Chuyển mock state actions sang React Query hoặc RTK Query để cache server state.
+5. Thêm phân quyền, audit log, và test E2E cho luồng giao dịch quan trọng.

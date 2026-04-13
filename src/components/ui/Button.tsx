@@ -18,18 +18,19 @@ const styles: Record<Variant, string> = {
 
 export function Button({ children, className, variant = 'primary', fullWidth, disabled, ...props }: PropsWithChildren<Props>) {
   return (
-    <motion.button
-      whileTap={{ scale: disabled ? 1 : 0.98 }}
-      disabled={disabled}
-      className={cn(
-        'ios-pill inline-flex items-center justify-center gap-2 font-semibold shadow-soft duration-ios focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 disabled:cursor-not-allowed disabled:opacity-50',
-        fullWidth && 'w-full',
-        styles[variant],
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </motion.button>
+    <motion.div whileTap={{ scale: disabled ? 1 : 0.98 }} className={fullWidth ? 'w-full' : undefined}>
+      <button
+        disabled={disabled}
+        className={cn(
+          'ios-pill inline-flex items-center justify-center gap-2 font-semibold shadow-soft duration-ios focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 disabled:cursor-not-allowed disabled:opacity-50',
+          fullWidth && 'w-full',
+          styles[variant],
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </button>
+    </motion.div>
   )
 }

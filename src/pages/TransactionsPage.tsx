@@ -161,7 +161,7 @@ export function TransactionsPage() {
           })}
         >
           <Input label="Tiêu đề" error={errors.title?.message} {...register('title')} />
-          <Input label="Số tiền" type="number" error={errors.amount?.message} {...register('amount')} />
+          <Input label="Số tiền" type="number" error={errors.amount?.message} {...register('amount', { valueAsNumber: true })} />
           <label className="flex flex-col gap-2 text-sm font-medium text-slate-700">
             <span>Loại giao dịch</span>
             <select className="h-11 rounded-input border border-white/60 bg-white/75 px-4" {...register('type')}>
