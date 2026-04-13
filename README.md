@@ -1,6 +1,6 @@
 # Transaction Management System and E-Wallet
 
-Website quản lý giao dịch + ví điện tử (React + Vite + TypeScript) theo phong cách UI iOS 26.
+Website quản lý giao dịch + ví điện tử (React + Vite + TypeScript) theo phong cách UI iOS-inspired (định hướng iOS 26 trong đề bài).
 
 ## Tech stack
 

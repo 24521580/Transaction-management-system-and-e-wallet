@@ -15,7 +15,7 @@ export function LandingPage() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6">
         <Card className="overflow-hidden p-8 md:p-12">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-            <p className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">iOS 26 Experience</p>
+            <p className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">iOS-inspired Experience</p>
             <h1 className="max-w-2xl text-3xl font-bold text-slate-900 md:text-5xl">Transaction Management System & E-Wallet</h1>
             <p className="mt-3 max-w-2xl text-slate-500">Nền tảng quản lý tài chính cá nhân hiện đại, tối ưu cho desktop, tablet và mobile.</p>
             <div className="mt-6 flex flex-wrap gap-3">
