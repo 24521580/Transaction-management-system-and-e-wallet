@@ -77,6 +77,20 @@ npm install
 npm run dev
 ```
 
+## Deploy public bằng Vercel
+
+1. Push code của repo này lên GitHub.
+2. Đăng nhập Vercel và chọn **Add New... > Project**.
+3. Import repository `Transaction-management-system-and-e-wallet`.
+4. Vercel sẽ tự nhận diện Vite, kiểm tra lại:
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Bấm **Deploy** để nhận URL public dạng `https://<project>.vercel.app`.
+6. Nếu dùng API/backend thật sau này, thêm biến môi trường tại:
+   - **Project Settings > Environment Variables**
+   - Sau đó redeploy project.
+7. (Tuỳ chọn) gắn domain riêng tại **Project Settings > Domains**.
+
 Build production:
 
 ```bash
